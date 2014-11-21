@@ -147,6 +147,11 @@ angular.module('ui.select2', []).value('uiSelect2Config', {}).directive('uiSelec
             });
           }
 
+          // Angular 1.3 adds a formatter that turns the ng-model object into a string, which we
+          // don't want.
+          // See: https://github.com/angular/angular.js/commit/1eda18365a348c9597aafba9d195d345e4f13d1e
+          controller.$formatters = [];
+
           // Update valid and dirty statuses
           controller.$parsers.push(function (value) {
             var div = elm.prev();
